@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:background="@color/purple_200"
+    android:orientation="vertical"
+    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expense Tracker"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:gravity="center" />
+
+</LinearLayout>

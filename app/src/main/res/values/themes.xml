@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style
+        name="Base.Theme.ExpenseTracker"
+        parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="drawerArrowStyle">@style/DrawerIconStyle</item>
+    </style>
+
+    <style
+        name="Theme.ExpenseTracker"
+        parent="Base.Theme.ExpenseTracker" />
+
+    <style name="DrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+
+        <item name="color">@color/white</item>
+    </style>
+
+</resources>

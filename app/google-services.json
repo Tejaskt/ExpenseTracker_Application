@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "89036235216",
+    "project_id": "expense-tracker-feed6",
+    "storage_bucket": "expense-tracker-feed6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89036235216:android:e957d4237c9a71353899d5",
+        "android_client_info": {
+          "package_name": "com.tejaskt.expensetracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhjl4F3mWIhZSLihUzS7YNjWQbQJFThBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
