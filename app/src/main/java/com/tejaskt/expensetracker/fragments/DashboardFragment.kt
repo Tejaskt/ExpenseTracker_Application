@@ -1,4 +1,4 @@
-package com.tejaskt.expensetracker
+package com.tejaskt.expensetracker.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.tejaskt.expensetracker.R
 import com.tejaskt.expensetracker.model.Data
 import java.text.DateFormat
 import java.util.Date
@@ -32,20 +33,20 @@ import java.util.Date
 class DashboardFragment : Fragment() {
 
     //Floating Button
-    private lateinit var fab_main_btn: FloatingActionButton
-    private lateinit var fab_income_btn: FloatingActionButton
-    private lateinit var fab_expense_btn: FloatingActionButton
+    private lateinit var fabMainBtn: FloatingActionButton
+    private lateinit var fabIncomeBtn: FloatingActionButton
+    private lateinit var fabExpenseBtn: FloatingActionButton
 
     //Floating button textview..
-    private lateinit var fab_income_txt: TextView
-    private lateinit var fab_expense_txt: TextView
+    private lateinit var fabIncomeTxt: TextView
+    private lateinit var fabExpenseTxt: TextView
 
     //boolean
     private var isOpen = false
 
     //Animation
-    private lateinit var FadOpen: Animation  //Animation
-    private lateinit var FadeClose: Animation
+    private lateinit var fadOpen: Animation
+    private lateinit var fadeClose: Animation
 
     //Firebase
     private lateinit var mAuth: FirebaseAuth
@@ -60,12 +61,6 @@ class DashboardFragment : Fragment() {
     private lateinit var mRecyclerIncome : RecyclerView
     private lateinit var mRecyclerExpense : RecyclerView
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            // nothing here
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,13 +82,13 @@ class DashboardFragment : Fragment() {
         mExpenseDatabase?.keepSynced(true)
 
         //Connect floating button to layout
-        fab_main_btn = myview.findViewById(R.id.fb_main_plus_btn)
-        fab_income_btn = myview.findViewById(R.id.income_Ft_btn)
-        fab_expense_btn = myview.findViewById(R.id.expense_Ft_btn)
+        fabMainBtn = myview.findViewById(R.id.fb_main_plus_btn)
+        fabIncomeBtn = myview.findViewById(R.id.income_Ft_btn)
+        fabExpenseBtn = myview.findViewById(R.id.expense_Ft_btn)
 
         //Connect floating text.
-        fab_income_txt = myview.findViewById(R.id.income_ft_text)
-        fab_expense_txt = myview.findViewById(R.id.expense_ft_text)
+        fabIncomeTxt = myview.findViewById(R.id.income_ft_text)
+        fabExpenseTxt = myview.findViewById(R.id.expense_ft_text)
 
         // Total income and expense result set..
         totalIncomeResult = myview.findViewById(R.id.income_set_result)
@@ -105,30 +100,30 @@ class DashboardFragment : Fragment() {
 
 
         //Animation connect.
-        FadOpen = AnimationUtils.loadAnimation(activity, R.anim.fade_open)
-        FadeClose = AnimationUtils.loadAnimation(activity, R.anim.fade_close)
+        fadOpen = AnimationUtils.loadAnimation(activity, R.anim.fade_open)
+        fadeClose = AnimationUtils.loadAnimation(activity, R.anim.fade_close)
 
-        fab_main_btn.setOnClickListener {
+        fabMainBtn.setOnClickListener {
             addData()
             isOpen = if (isOpen) {
-                fab_income_btn.startAnimation(FadeClose)
-                fab_expense_btn.startAnimation(FadeClose)
-                fab_income_btn.isClickable = false
-                fab_expense_btn.isClickable = false
-                fab_income_txt.startAnimation(FadeClose)
-                fab_expense_txt.startAnimation(FadeClose)
-                fab_income_txt.isClickable = false
-                fab_expense_txt.isClickable = false
+                fabIncomeBtn.startAnimation(fadeClose)
+                fabExpenseBtn.startAnimation(fadeClose)
+                fabIncomeBtn.isClickable = false
+                fabExpenseBtn.isClickable = false
+                fabIncomeTxt.startAnimation(fadeClose)
+                fabExpenseTxt.startAnimation(fadeClose)
+                fabIncomeTxt.isClickable = false
+                fabExpenseTxt.isClickable = false
                 false
             } else {
-                fab_income_btn.startAnimation(FadOpen)
-                fab_expense_btn.startAnimation(FadOpen)
-                fab_income_btn.isClickable = true
-                fab_expense_btn.isClickable = true
-                fab_income_txt.startAnimation(FadOpen)
-                fab_expense_txt.startAnimation(FadOpen)
-                fab_income_txt.isClickable = true
-                fab_expense_txt.isClickable = true
+                fabIncomeBtn.startAnimation(fadOpen)
+                fabExpenseBtn.startAnimation(fadOpen)
+                fabIncomeBtn.isClickable = true
+                fabExpenseBtn.isClickable = true
+                fabIncomeTxt.startAnimation(fadOpen)
+                fabExpenseTxt.startAnimation(fadOpen)
+                fabIncomeTxt.isClickable = true
+                fabExpenseTxt.isClickable = true
                 true
             }
         }
@@ -137,14 +132,15 @@ class DashboardFragment : Fragment() {
 
         mIncomeDatabase?.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(datasnapshot: DataSnapshot) {
-                var totalatvalue = 0
+                var totalValue = 0
 
                 for (snapshot in datasnapshot.children) {
                     val data = snapshot.getValue(Data::class.java)
-                    totalatvalue+= data!!.amount
+                    totalValue+= data!!.amount
 
-                    val stTotalValue: String = totalatvalue.toString()
-                    totalIncomeResult.text = "$stTotalValue.00"
+                    val stTotalValue: String = totalValue.toString()
+                    val fullString = "$stTotalValue.0"
+                    totalIncomeResult.text = fullString
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -156,14 +152,15 @@ class DashboardFragment : Fragment() {
 
         mExpenseDatabase?.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(datasnapshot: DataSnapshot) {
-                var totalsum = 0
+                var totalSum = 0
 
                 for (snapshot in datasnapshot.children) {
                     val data = snapshot.getValue(Data::class.java)
-                    totalsum+= data!!.amount
+                    totalSum+= data!!.amount
 
-                    val stTotalValue: String = totalsum.toString()
-                    totalExpenseResult.text = "$stTotalValue.00"
+                    val stTotalValue: String = totalSum.toString()
+                    val fullString2 = "$stTotalValue.0"
+                    totalExpenseResult.text =fullString2
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -193,41 +190,41 @@ class DashboardFragment : Fragment() {
     //Floating button animation
     private fun ftAnimation() {
         if (isOpen) {
-            fab_income_btn.startAnimation(FadeClose)
-            fab_expense_btn.startAnimation(FadeClose)
-            fab_income_btn.isClickable = false
-            fab_expense_btn.isClickable = false
-            fab_income_txt.startAnimation(FadeClose)
-            fab_expense_txt.startAnimation(FadeClose)
-            fab_income_txt.isClickable = false
-            fab_expense_txt.isClickable = false
+            fabIncomeBtn.startAnimation(fadeClose)
+            fabExpenseBtn.startAnimation(fadeClose)
+            fabIncomeBtn.isClickable = false
+            fabExpenseBtn.isClickable = false
+            fabIncomeTxt.startAnimation(fadeClose)
+            fabExpenseTxt.startAnimation(fadeClose)
+            fabIncomeTxt.isClickable = false
+            fabExpenseTxt.isClickable = false
             isOpen = false
         } else {
-            fab_income_btn.startAnimation(FadOpen)
-            fab_expense_btn.startAnimation(FadOpen)
-            fab_income_btn.isClickable = true
-            fab_expense_btn.isClickable = true
-            fab_income_txt.startAnimation(FadOpen)
-            fab_expense_txt.startAnimation(FadOpen)
-            fab_income_txt.isClickable = true
-            fab_expense_txt.isClickable = true
+            fabIncomeBtn.startAnimation(fadOpen)
+            fabExpenseBtn.startAnimation(fadOpen)
+            fabIncomeBtn.isClickable = true
+            fabExpenseBtn.isClickable = true
+            fabIncomeTxt.startAnimation(fadOpen)
+            fabExpenseTxt.startAnimation(fadOpen)
+            fabIncomeTxt.isClickable = true
+            fabExpenseTxt.isClickable = true
             isOpen = true
         }
     }
 
     private fun addData() {
-        fab_income_btn.setOnClickListener { incomeDataInsert() }
-        fab_expense_btn.setOnClickListener { expenseDataInsert() }
+        fabIncomeBtn.setOnClickListener { incomeDataInsert() }
+        fabExpenseBtn.setOnClickListener { expenseDataInsert() }
     }
 
     private fun incomeDataInsert() {
-        val mydialog = AlertDialog.Builder(
+        val myDialog = AlertDialog.Builder(
             requireActivity()
         )
         val inflater = LayoutInflater.from(activity)
         val myview: View = inflater.inflate(R.layout.custom_layout_for_insertdata, null)
-        mydialog.setView(myview)
-        val dialog = mydialog.create()
+        myDialog.setView(myview)
+        val dialog = myDialog.create()
         dialog.setCancelable(false)
         val edtAmmount = myview.findViewById<EditText>(R.id.ammount_edt)
         val edtType = myview.findViewById<EditText>(R.id.type_edt)
@@ -246,7 +243,7 @@ class DashboardFragment : Fragment() {
                 edtAmmount.error = "Required Field.."
                 return@OnClickListener
             }
-            val ourammontint = ammount.toInt()
+            val ourAmmountInt = ammount.toInt()
 
             if (TextUtils.isEmpty(note)) {
                 edtNote.error = "Required Field.."
@@ -254,7 +251,7 @@ class DashboardFragment : Fragment() {
             }
             val id: String? = mIncomeDatabase?.push()?.key
             val mDate = DateFormat.getDateInstance().format(Date())
-            val data = Data(ourammontint, type, note, id, mDate)
+            val data = Data(ourAmmountInt, type, note, id, mDate)
 
             id?.let { it1 -> mIncomeDatabase?.child(it1)?.setValue(data)?.addOnSuccessListener {
                 Toast.makeText(activity, "Income ADDED", Toast.LENGTH_SHORT).show()
@@ -272,16 +269,16 @@ class DashboardFragment : Fragment() {
 
     private fun expenseDataInsert() {
 
-        val mydialog = AlertDialog.Builder(
+        val myDialog = AlertDialog.Builder(
             requireActivity()
         )
 
         val inflater = LayoutInflater.from(activity)
         val myview: View = inflater.inflate(R.layout.custom_layout_for_insertdata, null)
 
-        mydialog.setView(myview)
+        myDialog.setView(myview)
 
-        val dialog = mydialog.create()
+        val dialog = myDialog.create()
         dialog.setCancelable(false)
 
         val ammount = myview.findViewById<EditText>(R.id.ammount_edt)
@@ -293,28 +290,28 @@ class DashboardFragment : Fragment() {
         btnSave.setOnClickListener(View.OnClickListener {
 
             val tmAmmount = ammount.text.toString().trim { it <= ' ' }
-            val tmtype = type.text.toString().trim { it <= ' ' }
-            val tmnote = note.text.toString().trim { it <= ' ' }
+            val tmType = type.text.toString().trim { it <= ' ' }
+            val tmNote = note.text.toString().trim { it <= ' ' }
 
             if (TextUtils.isEmpty(tmAmmount)) {
                 ammount.error = "Requires Fields..."
                 return@OnClickListener
             }
 
-            val inamount = tmAmmount.toInt()
-            if (TextUtils.isEmpty(tmtype)) {
+            val inAmount = tmAmmount.toInt()
+            if (TextUtils.isEmpty(tmType)) {
                 type.error = "Requires Fields..."
                 return@OnClickListener
             }
 
-            if (TextUtils.isEmpty(tmnote)) {
+            if (TextUtils.isEmpty(tmNote)) {
                 note.error = "Requires Fields..."
                 return@OnClickListener
             }
 
             val id: String = mExpenseDatabase?.push()?.key.toString()
             val mDate = DateFormat.getDateInstance().format(Date())
-            val data = Data(inamount, tmtype, tmnote, id, mDate)
+            val data = Data(inAmount, tmType, tmNote, id, mDate)
 
             mExpenseDatabase?.child(id)?.setValue(data)?.addOnSuccessListener {
                 Toast.makeText(activity, "Expense added", Toast.LENGTH_SHORT).show()
@@ -337,12 +334,12 @@ class DashboardFragment : Fragment() {
 
         // Adapter for Income card view
 
-        val Ioptions: FirebaseRecyclerOptions<Data> = FirebaseRecyclerOptions.Builder<Data>()
+        val iOptions: FirebaseRecyclerOptions<Data> = FirebaseRecyclerOptions.Builder<Data>()
             .setQuery(mIncomeDatabase!!, Data::class.java)
             .setLifecycleOwner(this)
             .build()
 
-       val incomeAdapter = object : FirebaseRecyclerAdapter<Data, IncomeViewHolder>(Ioptions) {
+       val incomeAdapter = object : FirebaseRecyclerAdapter<Data, IncomeViewHolder>(iOptions) {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomeViewHolder {
 
@@ -364,12 +361,12 @@ class DashboardFragment : Fragment() {
 
         // Adapter for Expense Card View
 
-        val Eoptions: FirebaseRecyclerOptions<Data> = FirebaseRecyclerOptions.Builder<Data>()
+        val eOptions: FirebaseRecyclerOptions<Data> = FirebaseRecyclerOptions.Builder<Data>()
             .setQuery(mExpenseDatabase!!, Data::class.java)
             .setLifecycleOwner(this)
             .build()
 
-        val expenseAdapter = object : FirebaseRecyclerAdapter<Data, ExpenseViewHolder>(Eoptions) {
+        val expenseAdapter = object : FirebaseRecyclerAdapter<Data, ExpenseViewHolder>(eOptions) {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
 
@@ -398,8 +395,8 @@ class DashboardFragment : Fragment() {
             }
 
             fun setIncomeAmmount(ammount : Int?){
-                val mammount : TextView = itemView.findViewById(R.id.ammountIncomeDs)
-                mammount.text = ammount.toString()
+                val mAmmount : TextView = itemView.findViewById(R.id.ammountIncomeDs)
+                mAmmount.text = ammount.toString()
             }
 
             fun setIncomeDate(date : String?){

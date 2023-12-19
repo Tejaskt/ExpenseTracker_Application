@@ -1,4 +1,4 @@
-package com.tejaskt.expensetracker
+package com.tejaskt.expensetracker.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.tejaskt.expensetracker.R
 import com.tejaskt.expensetracker.model.Data
 import java.text.DateFormat
 import java.util.Date
@@ -174,7 +175,7 @@ class IncomeFragment : Fragment() {
     fun updateDataItem(){
         val myDialog : AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater : LayoutInflater = LayoutInflater.from(activity)
-        val myView : View = inflater.inflate(R.layout.update_data_item ,null)
+        val myView : View = inflater.inflate(R.layout.update_data_item,null)
         myDialog.setView(myView)
 
         edtAmmount=myView.findViewById(R.id.ammount_edt)

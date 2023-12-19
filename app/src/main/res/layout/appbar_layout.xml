@@ -19,6 +19,34 @@
             android:background="@color/purple_200"
             app:titleTextColor="@android:color/white">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="end">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wallet"
+                    android:layout_marginEnd="5dp" />
+
+            <TextView
+                android:id="@+id/walletToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00.00"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FDD835"
+                android:gravity="center"/>
+            </LinearLayout>
+
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

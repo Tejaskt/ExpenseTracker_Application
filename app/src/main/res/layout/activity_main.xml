@@ -7,7 +7,7 @@
     android:background="@drawable/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -64,15 +64,6 @@
                 android:id="@+id/btnLogin"
                 android:textAppearance="?android:textAppearanceMedium"
                 />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:id="@+id/forgetPassword"
-                android:text="Forget Password?"
-                android:padding="5dp" />
 
             <TextView
                 android:layout_width="match_parent"

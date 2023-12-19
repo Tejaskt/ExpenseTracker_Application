@@ -6,5 +6,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc">This app is developed by Tejas Kanzariya\n</string>
 
 </resources>

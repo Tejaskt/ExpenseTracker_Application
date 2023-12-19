@@ -1,4 +1,4 @@
-package com.tejaskt.expensetracker
+package com.tejaskt.expensetracker.activities
 
 import android.app.ProgressDialog
 import android.content.Intent

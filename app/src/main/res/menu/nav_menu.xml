@@ -16,5 +16,10 @@
         android:title="Logout"
         android:icon="@drawable/logout"/>
 
+    <item android:title="About Us">
+        <menu>
+            <item android:title="App is Developed by Tejas Kanzariya"/>
+        </menu>
+    </item>
 
 </menu>

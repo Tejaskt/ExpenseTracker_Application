@@ -6,7 +6,7 @@
     android:background="@color/app_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".DashboardFragment">
+    tools:context=".fragments.DashboardFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -53,6 +53,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/expense_ammount_color" />
                 </RelativeLayout>
+
             </LinearLayout>
 
 
@@ -90,7 +91,11 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/expense_ammount_color" />
                 </RelativeLayout>
+
+
             </LinearLayout>
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -114,6 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Income:"
+                    android:textColor="@color/income_color"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:padding="10dp"/>
 
@@ -126,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Expense:"
+                    android:textColor="@color/expense_ammount_color"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:padding="10dp"/>
 

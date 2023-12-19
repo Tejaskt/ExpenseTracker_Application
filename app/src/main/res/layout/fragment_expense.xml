@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/app_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ExpenseFragment">
+    tools:context=".fragments.ExpenseFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

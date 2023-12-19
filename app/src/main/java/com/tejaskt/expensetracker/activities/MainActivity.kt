@@ -1,4 +1,4 @@
-package com.tejaskt.expensetracker
+package com.tejaskt.expensetracker.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mEmail: EditText
     private lateinit var mPass: EditText
     private lateinit var btnLogin: Button
-    private lateinit var mForgetPassword: TextView
     private lateinit var mSignupHere: TextView
 
     private lateinit var mDialog: ProgressDialog
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         mEmail = binding.emailLogin
         mPass = binding.passwordLogin
         btnLogin = binding.btnLogin
-        mForgetPassword = binding.forgetPassword
         mSignupHere = binding.signupReg
 
         btnLogin.setOnClickListener(View.OnClickListener {
@@ -91,11 +89,5 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-
-        // Reset Password Activity
-        mForgetPassword.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ReseatActivity::class.java))
-            finish()
-        }
     }
 }
