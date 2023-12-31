@@ -33,7 +33,7 @@
                     android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/income_color"
-                    android:text="income"
+                    android:text="Income"
                     />
             </RelativeLayout>
 

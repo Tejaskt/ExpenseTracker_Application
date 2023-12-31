@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                 }
         })
 
-
         // Registration Activity
         mSignupHere.setOnClickListener {
             startActivity(Intent(this@MainActivity, RegistrationActivity::class.java))
