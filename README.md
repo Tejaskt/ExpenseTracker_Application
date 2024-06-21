@@ -1,6 +1,6 @@
 # Expense Tracker 📊💰
 
-[![GitHub license](https://img.shields.io/github/license/Tejaskt/ExpenseTracker_Application)](https://github.com/Tejaskt/ExpenseTracker_Application/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Tejaskt/Expense_Tracker)](https://github.com/Tejaskt/Expense_Tracker/blob/master/LICENSE)
 
 🌟✨ Welcome to the Expense Tracker project! ✨🌟
 
